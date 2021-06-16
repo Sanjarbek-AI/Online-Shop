@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="card-deck">
             {% for news in object_list %}
-                <div class="card">
+                <div style="border: 5px solid black" class="card">
                     <img class="card-img-top" src="{{ news.image.url }}" alt="Card image cap">
                     <div class="card-body">
                         <a href="{% url 'home:detail' pk=news.pk %}">
