@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div style="border: 5px solid black;">
+            <div class="row mb-2 mt-4">
+                <div class="col-8 offset-2">
+                    <img class="w-50" src="{{ object.banner.url }}">
+                    <h4>{{ object.title }}</h4>
+                    <hr>
+                    {{ object.long_description|safe }}
+                    <div class="mt-3">
+                        <a href="{% url 'home:news' %}">
+                            <button class="btn btn-secondary">Back Home</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

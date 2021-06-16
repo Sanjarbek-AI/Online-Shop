@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Title</title>
+</head>
+<body>
+
+{% include 'layouts/header.html' %}
+
+<section>
+    <div class="container mt-5">
+        <div class="card-deck">
+            {% for news in last_news %}
+                <div class="card">
+                    <img class="card-img-top" src="{{ news.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <a href="{% url 'home:detail' pk=news.pk %}">
+                            <h5 class="card-title">{{ news.title }}</h5>
+                        </a>
+                        <p class="card-text">{{ news.short_description }}</p>
+                        <p class="card-text"><small class="text-muted">{{ news.created_at|timesince }}</small></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% block content %}
+{% endblock %}
+
+
+
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+</body>
+</html>
