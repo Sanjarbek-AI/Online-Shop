@@ -26,8 +26,10 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework',
 
     'home',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -118,4 +120,10 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
 }
