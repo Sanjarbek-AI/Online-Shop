@@ -1,9 +1,11 @@
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, ListView, DetailView
 
+from djangoProject import settings
 from home.forms import ContactModelForm
-from home.models import ContactModel, NewsModel
+from home.models import  NewsModel
 
 
 class HomeTemplateView(TemplateView):
@@ -21,6 +23,17 @@ class ContactCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('home:contact')
+
+    def form_valid(self, form):
+        obj = form.save()
+        mail = f'Name: {obj.name}\n Email: {obj.email} \n Message: {obj.message}'
+        send_mail(
+            'You have a message from contact',
+            mail,
+            settings.EMAIL_HOST_USER,
+            [settings.EMAIL_HOST_USER],
+        )
+        return reverse("home:contact")
 
 
 class NewsListView(ListView):
